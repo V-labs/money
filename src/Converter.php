@@ -58,12 +58,12 @@ final class Converter
             );
         }
 
-        $ratio                  = $currencyPair->getConversionRatio();
+        $ratio                  = (float)$currencyPair->getConversionRatio();
         $baseCurrencySubunit    = $this->currencies->subunitFor($currencyPair->getBaseCurrency());
         $counterCurrencySubunit = $this->currencies->subunitFor($currencyPair->getCounterCurrency());
         $subunitDifference      = $baseCurrencySubunit - $counterCurrencySubunit;
 
-        $ratio = Number::fromString($ratio)
+        $ratio = Number::fromFloat($ratio)
             ->base10($subunitDifference)
             ->__toString();
 
